@@ -1,0 +1,19 @@
+# Data files
+*.csv
+*.jsonl
+*.xlsx
+
+# Model files (PyTorch, TensorFlow, etc.)
+*.pt
+*.pth
+*.pkl
+*.h5
+*.model
+*.bin
+*.ckpt
+*.safetensors
+
+# Specific data files
+master_resumes_original.jsonl
+cleaned_resumes.csv
+research_data.xlsx
