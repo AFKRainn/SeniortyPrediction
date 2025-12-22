@@ -1,0 +1,48 @@
+BaseLine Model:
+Accuracy: 0.7262
+Classification Report:
+              precision    recall  f1-score   support
+
+      junior       0.95      0.76      0.84       140
+         mid       0.64      0.55      0.59       140
+      senior       0.65      0.87      0.74       140
+
+    accuracy                           0.73       420
+   macro avg       0.75      0.73      0.73       420
+weighted avg       0.75      0.73      0.73       420
+
+<IMAGE IN THE GENAI PICTURES DIRECTORY>
+
+-----------------------------------------------------------------------------------------------------------------
+Smaller Models:
+
+DistillBert:
+
+Accuracy: 0.6880952380952381
+Macro-F1: 0.6801020052345642
+
+Report:
+               precision    recall  f1-score   support
+
+      junior       0.97      0.76      0.86       140
+         mid       0.63      0.39      0.48       140
+      senior       0.57      0.91      0.70       140
+
+    accuracy                           0.69       420
+   macro avg       0.72      0.69      0.68       420
+weighted avg       0.72      0.69      0.68       420
+
+
+Confusion matrix:
+ [[107  20  13]
+ [  2  55  83]
+ [  1  12 127]]
+
+Roberta:
+
+
+
+
+--------------------------------------------------------------------------
+Big Models:
+
