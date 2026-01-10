@@ -1,0 +1,89 @@
+# Rahul Deshmukh
+**Java Developer**
+
+📧 rahul.deshmukh@email.com | 📱 +91-9876543210 | 📍 Amravati, Maharashtra, India
+
+---
+
+## Professional Summary
+
+Java Developer with 10 years of experience in developing and maintaining web applications using Java technologies. Experienced in working with Spring Framework, Hibernate, JSP, and Servlets for backend development. Comfortable with HTML, CSS, JavaScript, and jQuery for front-end work. Familiar with MySQL database operations and development in Agile environments. Currently seeking opportunities to contribute to software development projects.
+
+---
+
+## Work Experience
+
+**Java Developer**  
+Winsol Solution Pvt Ltd | Amravati, Maharashtra  
+July 2017 - Present
+
+- Develop and maintain Java-based applications for company projects
+- Work with Spring Framework and Hibernate for application backend
+- Implement JSP and Servlets for web functionality
+- Write SQL queries and work with MySQL database
+- Participate in Agile team meetings and sprint planning
+- Collaborate with team members on feature development
+- Perform code reviews and bug fixes as needed
+
+*Technologies: Java, Spring, Hibernate, JSP, Servlets, MySQL*
+
+---
+
+**Java Developer**  
+Kunal IT Services Pvt Ltd | Amravati, Maharashtra  
+July 2015 - June 2017
+
+- Developed Java web applications using JSP, Servlets, Spring, and Hibernate
+- Created user interfaces using HTML, CSS, JavaScript, and jQuery
+- Worked with MySQL for database operations
+- Used Eclipse and NetBeans for daily development work
+- Participated in Agile development process
+- Attended team meetings and contributed to project discussions
+
+*Technologies: Java, JSP, Servlets, Spring, Hibernate, HTML, CSS, JavaScript, jQuery, MySQL, Ajax*
+
+---
+
+## Technical Skills
+
+**Programming Languages**
+- Java (Intermediate)
+
+**Frameworks & Technologies**
+- Spring Framework (Beginner to Intermediate)
+- Hibernate (Beginner to Intermediate)
+- JSP & Servlets
+- HTML, CSS, JavaScript, jQuery, Ajax
+
+**Databases**
+- MySQL (Intermediate)
+
+**Development Tools**
+- Eclipse IDE
+- NetBeans IDE
+- Apache Tomcat
+- Git (Basic)
+
+**Methodologies**
+- Agile Development
+- Object-Oriented Programming
+
+---
+
+## Education
+
+**High School Diploma - Science Stream**  
+VidyaBharati College, Amravati, Maharashtra  
+June 2005 - January 2007
+
+**Secondary School Certificate**  
+Holy Cross English School, Amravati, Maharashtra  
+June 2003 - January 2005
+
+---
+
+## Additional Information
+
+- **Languages:** English, Hindi, Marathi
+- **Notice Period:** 1 month
+- Open to relocation within Maharashtra

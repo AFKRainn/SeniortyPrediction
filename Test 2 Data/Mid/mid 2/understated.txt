@@ -1,0 +1,107 @@
+# Alexander Willis
+
+📧 bradley19@example.org  
+💼 linkedin.com/in/amber44 | github.com/annaleonard
+
+---
+
+## Objective
+
+Looking for a Full-Stack Developer position where I can continue learning and growing my skills. Have some experience with React and Django and would like to contribute to a supportive team environment.
+
+---
+
+## Work Experience
+
+### **Full-Stack Developer**
+**Wood Group**  
+May 2018 - April 2024
+
+- Worked on data processing pipelines
+- Helped with system performance improvements
+- Created web interfaces using React (still learning best practices)
+- Used Docker and Kubernetes (basic usage)
+- Participated in Scrum meetings and team activities
+- Used Git for version control
+
+---
+
+### **Earlier Experience**
+
+Had some other positions before this role that I'm not including here. Can discuss if needed.
+
+---
+
+## Project
+
+### **Web Application Development**
+
+Contributed to web applications using React and Django. Worked on both frontend and backend tasks as assigned. Still learning about full-stack architecture patterns.
+
+**Technologies:** React, Django, JavaScript
+
+---
+
+## Technical Skills
+
+**Frontend:**
+- React (Comfortable with basics, still improving)
+- JavaScript (Working knowledge)
+- HTML/CSS (Basic responsive design)
+
+**Backend:**
+- Django (Have used it extensively, but always more to learn)
+- Python (Comfortable with most features)
+
+**Other:**
+- C++ (Some academic background, rusty)
+- MySQL (Basic queries)
+- PostgreSQL (Just getting familiar)
+- AWS (Limited experience, need more practice)
+- Docker (Basic usage)
+- Git (Standard version control)
+
+**Processes:**
+- Scrum (Have been on Scrum teams)
+- Agile (Familiar with the concepts)
+
+---
+
+## Education
+
+### **Master of Science in Computer Science**
+**Fields-Rogers University**  
+2015 - 2020
+
+- GPA: 3.33
+- Completed coursework in Data Structures and Algorithms
+
+---
+
+## Additional Information
+
+**Current Status:** Not currently employed (last position ended April 2024). Have been looking for the right opportunity and working on personal projects during this time.
+
+**Looking for:** Full-Stack Developer roles where I can continue learning
+
+**Availability:** Available to start immediately
+
+**Work Preferences:** Open to any work arrangement, prefer collaborative and supportive teams
+
+**Languages:** English
+
+---
+
+## What I'm Working On
+
+- Reviewing React and Django documentation
+- Working on small personal projects when I can
+- Trying to improve my understanding of cloud technologies
+- Learning more about Kubernetes
+- Open to feedback and eager to learn from experienced developers
+
+---
+
+## About My Background
+
+This resume shows my most recent work experience. I had some earlier positions that I didn't include here. I've been working with React and Django for several years and feel comfortable with them, though I know there's always more to learn. I'm looking for a role where I can continue developing my skills with guidance from the team. I'm reliable, complete assigned tasks, and enjoy working with colleagues on projects.

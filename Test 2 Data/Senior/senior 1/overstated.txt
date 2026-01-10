@@ -1,0 +1,148 @@
+# CASEY MCKENZIE
+**Senior Python Developer | Cloud Solutions Architect**
+
+📧 christopherperkins@example.net | 📱 Available upon request | 📍 Remote / Open to Relocation  
+💼 [linkedin.com/in/barbara33](https://linkedin.com/in/barbara33) | 🌐 [github.com/johnsonlouis](https://github.com/johnsonlouis)
+
+---
+
+## PROFESSIONAL SUMMARY
+
+**Results-driven Senior Python Developer with 6+ years of expertise** in architecting and deploying **enterprise-grade, scalable cloud-based solutions** across high-performance environments. Proven track record of **leading end-to-end software development lifecycles**, specializing in **RESTful API design, microservices architecture, and cloud infrastructure optimization** on Azure. Expert in **implementing robust security frameworks, data protection protocols, and performance-tuning strategies** that drive user engagement and system reliability. Deep proficiency in **Flask, PostgreSQL, Redis, and containerization technologies** (Docker, Kubernetes), with demonstrated success in **managing complex cloud resource allocation** and deploying mission-critical applications. Passionate about building **resilient, scalable systems** that deliver exceptional business value while maintaining the highest standards of code quality and security.
+
+---
+
+## CORE COMPETENCIES
+
+**Technical Leadership:** Cloud Architecture Design • Microservices Development • RESTful API Engineering • DevOps Best Practices  
+**Cloud & Infrastructure:** Azure Expert • Cloud Resource Management • Scalability Planning • Infrastructure as Code  
+**Backend Development:** Python • Flask • FastAPI • API Gateway Design • Service Orchestration  
+**Database Mastery:** PostgreSQL (Expert) • Redis (Expert) • Database Performance Optimization • Data Modeling  
+**Security & Compliance:** Security Best Practices • Data Protection Measures • Vulnerability Assessment • Compliance Implementation  
+**Tools & Technologies:** Docker • Kubernetes • Git/GitLab • GraphQL • CI/CD Pipelines • Agile/Scrum
+
+---
+
+## PROFESSIONAL EXPERIENCE
+
+### **Senior Python Developer | Cloud Solutions Engineer**
+**Williams, Mayo and Morgan** | *Contract (Full Engagement)* | June 2021 - May 2024
+
+*Led cloud-native application development initiatives for a fast-growing technology startup, architecting secure and scalable solutions*
+
+- **Spearheaded** the design and deployment of cloud-native Python applications on Azure, implementing Infrastructure as Code practices that improved deployment efficiency by 40% and reduced infrastructure costs
+- **Architected and implemented** comprehensive security frameworks including data encryption, authentication protocols, and vulnerability scanning, ensuring 100% compliance with industry security standards and data protection regulations
+- **Engineered** highly scalable microservices-based solutions using Flask and GraphQL, supporting 10x traffic growth while maintaining sub-200ms response times and 99.9% uptime
+- **Optimized** cloud resource allocation strategies on Azure, implementing auto-scaling policies and resource tagging that reduced operational costs by 30% while improving system performance
+- **Led** cross-functional collaboration with DevOps, QA, and product teams, driving Agile development practices and delivering 15+ major features ahead of schedule
+- **Established** version control best practices and code review standards, mentoring team members on Git workflows and ensuring consistent code quality across all projects
+- **Pioneered** containerization strategy using Docker, creating standardized deployment pipelines that reduced deployment time from hours to minutes
+
+**Key Technologies:** Python • Flask • GraphQL • Docker • Azure • Git • PostgreSQL • Redis • Kubernetes
+
+**Notable Achievements:**
+- Delivered scalable RESTful API serving 1M+ requests daily with 99.9% uptime
+- Reduced cloud infrastructure costs by 30% through optimization strategies
+- Achieved zero security incidents during tenure through proactive security measures
+
+---
+
+### **Python Developer | Backend Engineer**
+**Mata-Crawford** | *Full-Time* | October 2018 - May 2022
+
+*Drove backend development and cloud infrastructure management for a growing SaaS platform serving enterprise clients*
+
+- **Designed and implemented** robust RESTful APIs and microservices architecture using Python and Flask, enabling seamless integration with third-party services and supporting rapid feature expansion
+- **Managed** comprehensive Azure cloud infrastructure including compute, storage, and networking resources, ensuring optimal performance, cost-efficiency, and 99.95% service availability
+- **Optimized** application performance through strategic caching with Redis, database query optimization, and code profiling, resulting in 50% reduction in average response time
+- **Developed** responsive backend systems that powered seamless user experiences across web and mobile platforms, supporting 50K+ active users
+- **Collaborated** within Scrum framework, actively participating in sprint planning, daily stand-ups, and retrospectives to deliver high-quality features on aggressive timelines
+- **Implemented** comprehensive monitoring and logging solutions using industry-standard tools, enabling proactive issue detection and resolution
+- **Contributed** to architectural decisions and technical roadmap planning, influencing technology stack choices and development best practices
+
+**Key Technologies:** Python • Flask • Docker • Git • GitLab • GraphQL • PostgreSQL • Redis • Azure • Scrum
+
+**Notable Achievements:**
+- Improved application response time by 50% through Redis caching implementation
+- Successfully migrated legacy monolith to microservices architecture
+- Maintained 99.95% uptime for critical business applications
+
+---
+
+## FEATURED PROJECTS
+
+### **Cloud-Native RESTful API Platform** | [ruiz-duncan.com](https://ruiz-duncan.com/)
+*Python Developer & Solutions Architect*
+
+Architected and developed a highly scalable RESTful API platform using Flask, integrated with Azure cloud services for enterprise-grade data processing and analytics. Implemented Kubernetes orchestration for automatic scaling, CI/CD pipelines for rapid deployment, and comprehensive monitoring solutions. The platform processes 100K+ requests daily with sub-100ms latency, demonstrating exceptional performance and reliability.
+
+**Technologies:** Python • Flask • Kubernetes • CI/CD • JavaScript • Git • Azure
+
+---
+
+### **Microservices Architecture for E-Commerce Platform** | [hill.info](http://www.hill.info/)
+*Lead Backend Developer*
+
+Led development of a distributed microservices architecture using Flask and Docker, integrated with Azure cloud infrastructure. Implemented service discovery, API gateway patterns, and event-driven communication using GraphQL. The solution improved system scalability by 300%, reduced deployment complexity, and enabled independent service updates with zero downtime.
+
+**Technologies:** Python • Flask • Docker • JavaScript • Go • GraphQL • Azure
+
+---
+
+## TECHNICAL PROFICIENCY
+
+**Programming Languages**
+- Python (Advanced) • Go (Proficient) • JavaScript (Intermediate)
+
+**Frameworks & Libraries**
+- Flask (Expert) • React (Intermediate) • FastAPI • Django
+
+**Databases & Caching**
+- PostgreSQL (Expert) • Redis (Expert) • Database Design & Optimization
+
+**Cloud & DevOps**
+- Azure (Expert) • Docker • Kubernetes • CI/CD • Infrastructure as Code • GitLab CI
+
+**Development Tools**
+- Git/GitLab • GraphQL • RESTful APIs • Agile/Scrum • Code Review Tools
+
+---
+
+## EDUCATION
+
+### **Bachelor of Science in Computer Science**
+**Anderson LLC** | East Mollyville | *January 2017 - March 2022*
+
+- **GPA:** 3.89/4.0 | **Honors:** Magna Cum Laude
+- **Relevant Coursework:** Data Structures, Software Engineering, Distributed Systems, Advanced Algorithms
+- **Academic Excellence:** Consistently recognized for outstanding performance in software engineering and systems design
+
+### **Bachelor of Science in Computer Science**
+**Miller, Murray and Marshall** | South Martin | *May 2016 - August 2019*
+
+- **GPA:** 3.45/4.0 | **Honors:** Magna Cum Laude  
+- **Relevant Coursework:** Software Engineering, Network Security, Advanced Algorithms
+- **Focus Areas:** Cloud computing, cybersecurity, and modern software architecture patterns
+
+---
+
+## PROFESSIONAL ATTRIBUTES
+
+✦ **Strategic Thinker** - Proven ability to architect scalable solutions that align with business objectives  
+✦ **Security Focused** - Deep commitment to implementing best practices for data protection and compliance  
+✦ **Performance Optimizer** - Track record of improving system efficiency and reducing operational costs  
+✦ **Collaborative Leader** - Excellent communication skills with experience mentoring junior developers  
+✦ **Continuous Learner** - Passionate about staying current with emerging technologies and industry trends
+
+---
+
+## ADDITIONAL INFORMATION
+
+**Certifications:** Azure Solutions Architect (In Progress) | AWS Certified Developer (Planned)  
+**Languages:** English (Fluent)  
+**Availability:** Immediate | Open to Remote, Hybrid, or Relocation  
+**Work Authorization:** Authorized to work in all locations
+
+---
+
+*Portfolio and additional project details available upon request*

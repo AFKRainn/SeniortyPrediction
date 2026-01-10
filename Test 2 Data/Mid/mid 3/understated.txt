@@ -1,0 +1,129 @@
+# Heather Johnson
+
+📧 travishayes@example.com  
+💼 linkedin.com/in/alejandra74 | github.com/cheryl75
+
+---
+
+## Objective
+
+Looking for a Full-Stack Developer position where I can continue learning and improving my skills. Have some experience with Vue.js, React, and AWS. Would like to contribute to a supportive team environment.
+
+---
+
+## Work Experience
+
+### **Full-Stack Developer**
+**Torres-Coleman**  
+April 2022 - July 2023
+
+- Worked on data analysis tasks using Python and Tableau
+- Helped with system security audits
+- Assisted with cloud deployments on AWS
+- Participated in system monitoring and performance checks
+- Used Docker and Git for basic tasks
+- Attended Agile team meetings
+
+---
+
+### **Full-Stack Developer**
+**Key-Gray**  
+January 2020 - April 2022
+
+- Worked with database schemas and queries
+- Helped manage some AWS cloud resources
+- Did data analysis and visualization when asked
+- Tried to ensure applications worked properly
+- Used Jenkins for some CI/CD work
+- Participated in team activities
+
+---
+
+### **Full-Stack Developer**
+**Klein, Chan and Estrada**  
+May 2015 - January 2020
+
+- Worked on some machine learning models (still learning this area)
+- Participated in code reviews
+- Helped deploy applications to the cloud
+- Assisted with system monitoring tasks
+- Used Jenkins and other CI/CD tools
+- Attended Scrum meetings
+
+---
+
+## Project
+
+### **Web Application Development**
+
+Contributed to web applications using React and Django. Worked on both frontend and backend tasks as assigned. Still learning about best practices for full-stack architecture.
+
+**Technologies:** React, Django, CI/CD, Git
+
+---
+
+## Technical Skills
+
+**Frontend:**
+- Vue.js (Have used it a lot, but always more to learn)
+- React (Basic to intermediate understanding)
+- JavaScript (Working knowledge)
+- HTML/CSS (Basic responsive design)
+
+**Backend:**
+- Django (Comfortable with basics)
+- Python (Intermediate level, still improving)
+
+**Other:**
+- C# (Some experience, need more practice)
+- C++ (Very basic knowledge)
+- AWS (Have used it, but need to learn more)
+- MongoDB, Redis (Just getting familiar)
+- Tableau (Have used for visualizations)
+- Docker (Basic usage)
+- Git (Standard version control)
+
+**Processes:**
+- Agile (Have been on Agile teams)
+- Scrum (Familiar with the process)
+
+---
+
+## Education
+
+### **Bachelor of Science in Computer Science**
+**Whitney-Guzman University**  
+2011 - 2015
+
+- GPA: 3.77
+
+---
+
+## Additional Information
+
+**Current Status:** Not currently employed (last position ended July 2023). Have been looking for the right opportunity and working on improving skills during this time.
+
+**Looking for:** Full-Stack Developer roles where I can continue learning
+
+**Availability:** Available to start immediately
+
+**Work Preferences:** Open to any work arrangement, prefer collaborative teams
+
+**Languages:** English
+
+---
+
+## What I'm Working On
+
+- Reviewing Vue.js and React documentation
+- Trying to understand AWS services better
+- Working on small personal projects when I can
+- Learning more about data analysis and visualization
+- Practicing with Python and JavaScript
+- Open to feedback and eager to learn from experienced developers
+
+---
+
+## About My Background
+
+I've been working as a full-stack developer for several years across different companies. I've used Vue.js quite a bit and feel comfortable with it, and I have some AWS experience though I know there's much more to learn. I've worked with databases, done some data visualization, and even touched on machine learning, but I'm aware I need to keep improving in all these areas. I'm looking for a role where I can continue developing my skills with support from the team. I'm reliable, complete assigned tasks, and enjoy working with colleagues.
