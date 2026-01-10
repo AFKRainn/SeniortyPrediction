@@ -1,0 +1,146 @@
+# Casey Mckenzie
+**Python Developer**
+
+📧 christopherperkins@example.net | 📍 Open to Remote Work  
+💼 [linkedin.com/in/barbara33](https://linkedin.com/in/barbara33) | 🌐 [github.com/johnsonlouis](https://github.com/johnsonlouis)
+
+---
+
+## Professional Summary
+
+Python Developer with approximately 5.5 years of experience developing web applications and managing cloud infrastructure. Experienced in building RESTful APIs using Flask, working with PostgreSQL and Redis databases, and deploying applications on Azure. Comfortable working in Agile environments and collaborating with cross-functional teams. Strong background in cloud resource management and application security. Currently seeking new opportunities to contribute technical skills to a development team.
+
+---
+
+## Work Experience
+
+### **Python Developer (Contract)**
+**Williams, Mayo and Morgan** | June 2021 - May 2024 (3 years)
+
+Worked as a contract developer for a small technology company, focusing on cloud deployment and security implementation.
+
+- Developed and deployed Python applications on Azure cloud platform
+- Implemented security measures including data encryption and access controls
+- Worked with Docker for containerization and deployment
+- Used Git for version control in a collaborative team environment
+- Participated in Agile development processes and sprint planning
+- Collaborated with team members on feature development and bug fixes
+
+*Technologies: Python, Flask, GraphQL, Docker, Git, Azure*
+
+---
+
+### **Python Developer**
+**Mata-Crawford** | October 2018 - May 2022 (3.5 years)
+
+Developed backend applications and managed cloud infrastructure for a medium-sized technology company.
+
+- Built RESTful APIs and microservices using Python and Flask
+- Managed Azure cloud resources including compute and storage
+- Optimized application performance using Redis caching
+- Worked with PostgreSQL for database operations
+- Ensured application responsiveness and functionality
+- Participated in Scrum meetings and contributed to sprint deliverables
+- Used GitLab for version control and code collaboration
+
+*Technologies: Python, Flask, Docker, Git, GitLab, GraphQL, PostgreSQL, Redis, Azure*
+
+**Note:** From June 2021 to May 2022, I worked this position alongside contract work, primarily handling weekends and evenings for the contract role.
+
+---
+
+## Projects
+
+### **RESTful API with Cloud Integration**
+*Role: Python Developer*
+
+Developed a Flask-based RESTful API integrated with cloud services for improved data processing. Implemented basic CI/CD pipelines and container orchestration. The API handled data operations and provided endpoints for client applications.
+
+**Technologies:** Python, Flask, Kubernetes, CI/CD, JavaScript, Git
+
+**Link:** [ruiz-duncan.com](https://ruiz-duncan.com/)
+
+---
+
+### **Microservices Application**
+*Role: Backend Developer*
+
+Built a microservices-based application using Flask and Docker. Worked on service communication and deployment automation. Contributed to the overall architecture and implementation of individual services.
+
+**Technologies:** Python, Flask, Docker, JavaScript, Go
+
+**Link:** [hill.info](http://www.hill.info/)
+
+---
+
+## Technical Skills
+
+**Programming Languages**
+- Python (Intermediate)
+- Go (Beginner)
+- JavaScript (Basic)
+
+**Frameworks & Libraries**
+- Flask (Intermediate)
+- React (Intermediate - limited professional use)
+
+**Databases**
+- PostgreSQL (Advanced)
+- Redis (Advanced)
+
+**Cloud & DevOps**
+- Azure (Advanced)
+- Docker (Intermediate)
+- Kubernetes (Basic)
+- Git/GitLab (Intermediate)
+
+**Other Technologies**
+- GraphQL (Intermediate)
+- RESTful APIs (Intermediate)
+- CI/CD (Basic)
+
+**Methodologies**
+- Agile/Scrum
+- Version Control
+
+---
+
+## Education
+
+### **Bachelor of Science in Computer Science**
+**Anderson LLC** | East Mollyville  
+*January 2017 - March 2022*
+
+- GPA: 3.89/4.0
+- Honors: Magna Cum Laude
+- Relevant Coursework: Data Structures, Software Engineering, Distributed Systems, Advanced Algorithms
+
+### **Bachelor of Science in Computer Science**
+**Miller, Murray and Marshall** | South Martin  
+*May 2016 - August 2019*
+
+- GPA: 3.45/4.0
+- Honors: Magna Cum Laude
+- Relevant Coursework: Software Engineering, Network Security, Advanced Algorithms
+
+**Note:** Completed two degree programs, with overlapping coursework allowing acceleration of the second degree.
+
+---
+
+## Additional Information
+
+**Current Status:** Actively seeking full-time Python developer positions (Last role ended May 2024)
+
+**Languages:** English (Fluent)
+
+**Work Preferences:** Open to remote, hybrid, or on-site positions
+
+**Notice Period:** Available immediately
+
+---
+
+## Professional Development
+
+- Continuously learning new technologies through online courses and personal projects
+- Maintaining GitHub repository with code samples and project work
+- Staying current with Python ecosystem developments and best practices

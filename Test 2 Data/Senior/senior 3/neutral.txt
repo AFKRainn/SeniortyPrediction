@@ -1,0 +1,167 @@
+# Pamela Anderson
+**Java Developer**
+
+📧 stephaniegarcia@example.org | 📍 Open to Remote Work  
+💼 [linkedin.com/in/brianelliott](https://linkedin.com/in/brianelliott) | 🌐 [github.com/sandra72](https://github.com/sandra72)
+
+---
+
+## Professional Summary
+
+Java Developer with 8+ years of documented experience in backend development, microservices architecture, and cloud infrastructure. Experienced in building RESTful APIs using Spring Boot, implementing CI/CD pipelines, and optimizing application performance on Google Cloud Platform. Background includes system security auditing, third-party API integration, and working in Agile/Kanban environments. Skilled in version control, containerization with Docker and Kubernetes, and collaborative team development. Currently seeking new opportunities after recent role conclusion.
+
+**Note:** Resume shows most recent experience; additional earlier career experience not listed.
+
+---
+
+## Work Experience
+
+### **Java Developer**
+**Mitchell-Fernandez** | Large Technology Company  
+August 2020 - April 2024 (3 years, 8 months)
+
+Focused on performance optimization, system integration, and CI/CD pipeline development.
+
+- Optimized system performance and reduced application latency
+- Integrated multiple third-party services and APIs into existing platform
+- Used version control (Git) effectively in collaborative team environment
+- Developed and maintained CI/CD pipelines for automated deployments
+- Implemented RESTful APIs and microservices using Spring Boot
+- Worked with Kubernetes for container orchestration
+- Participated in Agile development processes and sprint planning
+
+*Technologies: Java, Spring Boot, Kubernetes, GraphQL, Google Cloud, REST, CI/CD*
+
+---
+
+### **Java Developer**
+**Gomez-Carrillo** | Medium Technology Company  
+July 2015 - August 2020 (5 years, 1 month)
+
+Worked on deployment automation, performance optimization, and security implementation.
+
+- Automated deployment processes and continuous integration workflows
+- Optimized application performance and worked on improving user engagement
+- Enhanced system security and performed regular security audits
+- Collaborated with DevOps and engineering teams
+- Used Kanban methodology for project management
+- Worked with Kubernetes and CI/CD tools
+- Contributed to REST API development
+
+*Technologies: Java, Spring Boot, Git, REST, Kubernetes, CI/CD, Google Cloud*
+
+---
+
+### **Previous Experience**
+
+Earlier career experience in software development positions not detailed on this resume. Additional background available upon request.
+
+---
+
+## Projects
+
+### **Microservices Backend System**
+*Java Developer*
+
+Developed microservices-based backend using Spring Boot, focusing on system efficiency and latency reduction. Worked on containerization with Kubernetes and GraphQL API development.
+
+**Technologies:** Java, Spring Boot, C++, Kubernetes, GraphQL
+
+**Link:** [scott.com](https://www.scott.com/)
+
+---
+
+### **Backend API Development**
+*Java Developer*
+
+Contributed to backend infrastructure using Spring Boot and REST APIs. Focused on scalability and performance across distributed services.
+
+**Technologies:** Java, Spring Boot, REST, JavaScript
+
+**Link:** [brown.net](https://www.brown.net/)
+
+---
+
+## Technical Skills
+
+**Programming Languages**
+- Java (Intermediate to Advanced - 8+ years documented)
+- C++ (Intermediate)
+- Go (Intermediate)
+- Python (Intermediate)
+- JavaScript (Basic to Intermediate)
+
+**Frameworks & Technologies**
+- Spring Boot (Intermediate to Advanced)
+- REST APIs (Intermediate)
+- GraphQL (Intermediate)
+- Django (Intermediate - limited use)
+- Vue.js (Intermediate - limited use)
+
+**Databases**
+- Oracle (Intermediate)
+- PostgreSQL (Basic to Intermediate)
+- Redis (Beginner)
+- Database schema design and query optimization
+
+**Cloud & DevOps**
+- Google Cloud Platform (Advanced)
+- Kubernetes (Intermediate)
+- Docker (Intermediate)
+- CI/CD pipelines (Intermediate)
+- Jenkins, GitLab CI
+
+**Development Tools**
+- Git/GitLab (Intermediate)
+- Maven/Gradle
+- IntelliJ IDEA/Eclipse
+
+**Methodologies**
+- Agile/Scrum
+- Kanban
+- Code review processes
+- Version control best practices
+
+---
+
+## Education
+
+### **Master of Science in Computer Science**
+**Dougherty-Glass University** | Leeborough  
+*2011 - 2015*
+
+- GPA: 3.71/4.0
+- Honors: Dean's List
+- Relevant Coursework: Database Systems, Data Structures, Machine Learning
+- Completed before beginning professional career
+
+### **Bachelor of Science in Computer Science**
+**Bentley-Kennedy University** | South Williamfort  
+*2007 - 2011*
+
+- GPA: 2.84/4.0
+- Relevant Coursework: Data Structures, Advanced Algorithms
+- Foundation in computer science fundamentals
+
+---
+
+## Additional Information
+
+**Current Status:** Seeking new opportunities (Last role ended April 2024)
+
+**Languages:** English (Fluent)
+
+**Work Preferences:** Open to remote, hybrid, or on-site positions
+
+**Notice Period:** Available immediately
+
+**Career Note:** This resume highlights most recent 8+ years of experience. Earlier professional experience exists but is not detailed here to keep resume focused on current skills and recent accomplishments.
+
+---
+
+## Professional Development
+
+- Maintaining technical skills through personal projects and online learning
+- Active GitHub presence with code samples and contributions
+- Following industry trends in Java ecosystem, microservices, and cloud technologies
+- Open to continuing education and professional certifications
