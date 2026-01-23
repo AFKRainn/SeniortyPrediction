@@ -18,5 +18,5 @@ master_resumes_original.jsonl
 cleaned_resumes.csv
 research_data.xlsx
 
-Smaller Models/distillbert_resume_level/
+Smaller Models/distilbert_resume_level/
 Smaller Models/roberta_resume_level/
