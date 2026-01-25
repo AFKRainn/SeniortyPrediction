@@ -94,6 +94,37 @@ After generation, we verified the data quality:
    - High similarity between versions (0.7+)
    - Confirms same content, just different wording
 
+3. TONE SCORE:
+   - Measures the "tone" of each resume using power words vs humble words
+   
+   FORMULA:
+     Tone Score = (power_word_count - humble_word_count) / (power_word_count + humble_word_count + 1)
+   
+   RANGE: -1 (humble/understated) to +1 (power/overstated)
+   
+   POWER WORDS (examples):
+     spearheaded, revolutionized, pioneered, architected, leveraged,
+     orchestrated, transformed, accelerated, optimized, championed
+   
+   HUMBLE WORDS (examples):
+     helped, assisted, contributed, supported, participated,
+     aided, worked with, collaborated on, was part of
+   
+   RESULTS:
+     ┌─────────────┬────────────┬─────────────┬──────────────┐
+     │ Style       │ Tone Score │ Avg Power   │ Avg Humble   │
+     ├─────────────┼────────────┼─────────────┼──────────────┤
+     │ Overstated  │   +0.694   │    ~18      │     ~3       │
+     │ Neutral     │   -0.383   │    ~3       │     ~7       │
+     │ Understated │   -0.841   │    ~1       │    ~10       │
+     └─────────────┴────────────┴─────────────┴──────────────┘
+   
+   WHY THIS MATTERS:
+     - Confirms the style variations worked as intended
+     - Overstated resumes have high positive scores (more power words)
+     - Understated resumes have low negative scores (more humble words)
+     - Clear separation between all three styles validates the data generation
+
 
 OUTPUT
 ------
