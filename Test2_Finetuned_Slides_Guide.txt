@@ -1,493 +1,70 @@
 ================================================================================
-        TEST 2: STYLE BIAS - FINETUNED MODELS PRESENTATION GUIDE
+            TEST 2: STYLE BIAS - FINETUNED MODELS (SLIDES GUIDE)
 ================================================================================
 
-This guide provides detailed content for presenting Test 2 results on 
-finetuned models (DistilBERT and RoBERTa). Each slide includes:
-- What to show
-- What the numbers mean
-- Why the metric proves the point
-- Which PNG file to use
-
-
-================================================================================
-SLIDE 1: Test 2 Introduction
-================================================================================
-
-Title: "Test 2: Do Finetuned Models Have Style Bias?"
-
-Content:
-• Research Question: 
-  "If someone writes their resume confidently vs modestly, does the AI 
-  give them a different seniority prediction - even if their actual 
-  experience is identical?"
-
-• What We Test:
-  - DistilBERT (66M parameters) - lightweight transformer
-  - RoBERTa (125M parameters) - robust transformer
-  - Both finetuned on our resume dataset
-
-• Test Data:
-  - 120 people, each with 3 resume versions
-  - NEUTRAL: Professional, factual writing
-  - OVERSTATED: Confident, power words ("spearheaded", "revolutionized")
-  - UNDERSTATED: Humble, modest words ("helped", "assisted", "contributed")
-  - Same experience in all 3 versions - only wording changed
-
-• What We Measure:
-  - Accuracy: Does the model predict correctly?
-  - Rank Difference: Does it over/underestimate seniority?
-  - Inconsistency: Does the same person get different predictions?
-  - Word Influence: Which words drive the predictions?
-
-No image needed - this is context setting.
+WHAT WE TESTED
+--------------
+Question: Does confident vs humble writing affect seniority predictions?
+Models: DistilBERT, RoBERTa (finetuned on resume data)
+Data: 120 people x 3 writing styles = 360 resumes
 
 
 ================================================================================
-SLIDE 2: Accuracy by Style
+METRIC 1: ACCURACY
 ================================================================================
 
-Title: "Accuracy: How Often Does the Model Get It Right?"
-
-IMAGE: viz1_accuracy_by_style.png (left side - finetuned models panel)
-
-Results to Present:
-┌─────────────┬────────────┬─────────┐
-│ Style       │ DistilBERT │ RoBERTa │
-├─────────────┼────────────┼─────────┤
-│ Neutral     │   44.2%    │  35.8%  │
-│ Overstated  │   33.3%    │  33.3%  │
-│ Understated │   45.0%    │  49.2%  │
-└─────────────┴────────────┴─────────┘
-
-What These Numbers Mean:
-• 44.2% means: Out of 120 neutral resumes, DistilBERT correctly predicted 
-  the seniority level (junior/mid/senior) for only 53 of them.
-
-• 33.3% is exactly random chance (3 classes = 1/3 probability). This means 
-  for OVERSTATED resumes, both models perform no better than guessing.
-
-Why This Matters:
-• If style didn't affect the model, accuracy would be EQUAL across all 3 styles.
-
-• But we see: Overstated accuracy (33%) < Neutral accuracy (44%) < Understated accuracy (45-49%)
-
-• This proves: Confident, inflating language CONFUSES the models. Instead of 
-  helping, power words make predictions WORSE.
-
-Key Insight to Say:
-"When candidates write confidently with power words, the models actually 
-perform WORSE - dropping to random-guess levels. This is the first sign 
-that style is interfering with accurate classification."
-
-
-================================================================================
-SLIDE 3: Prediction Bias (Rank Difference)
-================================================================================
-
-Title: "Bias Direction: Does the Model Over or Underestimate?"
-
-IMAGE: viz2_bias_by_style.png (left side - finetuned models panel)
-
-Quick Explanation of the Metric:
-• We convert seniority to numbers: Junior=0, Mid=1, Senior=2
-• Rank Difference = Predicted - True
-• Positive (+) = Model predicts TOO HIGH (overestimates)
-• Negative (-) = Model predicts TOO LOW (underestimates)
-• Zero (0) = Perfect, no systematic bias
-
-Results to Present:
-┌─────────────┬────────────┬─────────┐
-│ Style       │ DistilBERT │ RoBERTa │
-├─────────────┼────────────┼─────────┤
-│ Overstated  │   +0.917   │ +0.925  │
-│ Neutral     │   +0.583   │ +0.733  │
-│ Understated │   +0.550   │ -0.433  │
-└─────────────┴────────────┴─────────┘
-
-What These Numbers Mean:
-• +0.917 means: On average, the model predicts almost ONE FULL LEVEL too high 
-  for overstated resumes.
-  
-  Example: A junior (level 0) with an overstated resume gets predicted as 
-  mid (level 1) or senior (level 2) on average.
-
-• +0.925 (RoBERTa overstated) is even worse - nearly a full level overestimate.
-
-• -0.433 (RoBERTa understated) means: For humble resumes, RoBERTa predicts 
-  almost half a level TOO LOW.
-
-Why This Proves Style Bias:
-• Look at the GAP between overstated and understated:
-  - DistilBERT: +0.917 vs +0.550 = 0.37 level difference
-  - RoBERTa: +0.925 vs -0.433 = 1.36 level difference!
-
-• This means: The SAME PERSON with the SAME EXPERIENCE gets rated almost 
-  1.5 levels higher if they write confidently vs modestly (for RoBERTa).
-
-Key Insight to Say:
-"A junior developer who writes an overstated resume gets treated like a 
-mid-level or senior developer. The model is not reading experience - it's 
-reading confidence. This is a +0.9 bias toward overstated writing."
-
-
-================================================================================
-SLIDE 4: The Critical Test - Juniors Predicted as Senior
-================================================================================
-
-Title: "The Worst Mistake: Juniors Being 'Promoted' to Senior"
-
-IMAGE: viz3_junior_promotion_rate.png (left side - finetuned models panel)
-
-Context:
-• This is the most dangerous error in hiring: predicting a junior (1-2 years 
-  experience) as senior (5+ years experience).
-• We measure: What % of actual JUNIORS get mispredicted as SENIOR?
-
-Results to Present:
-┌───────────────────────────┬────────────┬─────────┐
-│ Junior Resumes            │ DistilBERT │ RoBERTa │
-├───────────────────────────┼────────────┼─────────┤
-│ Overstated → Senior       │   75.0%    │  77.5%  │
-│ Neutral → Senior          │    7.5%    │  27.5%  │
-│ Understated → Senior      │   10.0%    │   0.0%  │
-└───────────────────────────┴────────────┴─────────┘
-
-What These Numbers Mean:
-• 75% means: Out of 40 junior developers with overstated resumes, 30 of them 
-  were predicted as SENIOR.
-
-• 7.5% for neutral means: Only 3 out of 40 junior developers with neutral 
-  resumes were mispredicted as senior.
-
-• The jump from 7.5% to 75% is a 10x increase just from changing word choice.
-
-Why This Is Devastating:
-• These juniors have 1-2 years of experience. They write "I spearheaded the 
-  revolutionary transformation of our strategic platform."
-  
-• The model reads the power words and thinks: "This sounds like a senior."
-
-• In a real hiring scenario, this junior could be:
-  - Hired for a senior role they can't perform
-  - Paid a senior salary they don't deserve
-  - Set up to fail
-
-Real-World Impact Example:
-"Imagine you're screening 1,000 junior applicants. With these models:
-- 750 overstated juniors get flagged as 'senior material'
-- Only 75 neutral juniors get the same treatment
-- That's 675 WRONG promotions caused purely by writing style"
-
-Key Insight to Say:
-"Three out of four juniors who overstate their resume get mislabeled as 
-senior. This is not a small bias - this is a fundamental failure to 
-distinguish actual experience from confident writing."
-
-
-================================================================================
-SLIDE 5: Inconsistency - Same Person, Different Predictions
-================================================================================
-
-Title: "Consistency Test: Does the Same Person Get the Same Answer?"
-
-IMAGE: viz4_inconsistency_rate.png
-
-Explanation of the Metric:
-• For each of our 120 people, we have 3 resume versions (neutral, overstated, 
-  understated).
-• All 3 versions describe the EXACT SAME experience.
-• We check: Did the model give the SAME prediction for all 3 versions?
-• If predictions differ, that person is "inconsistent."
-
-Results to Present:
-┌─────────────┬───────────────────┐
-│ Model       │ Inconsistency Rate│
-├─────────────┼───────────────────┤
-│ DistilBERT  │      40.8%        │
-│ RoBERTa     │      93.3%        │
-└─────────────┴───────────────────┘
-
-What These Numbers Mean:
-• 40.8% means: 49 out of 120 people got DIFFERENT predictions depending on 
-  how they wrote their resume.
-
-• 93.3% means: 112 out of 120 people got different predictions. Almost EVERYONE.
-
-Example of an Inconsistent Person:
-  Sarah is a junior developer (true level: junior).
-  - Her neutral resume → Model predicts "mid"
-  - Her overstated resume → Model predicts "senior"  
-  - Her understated resume → Model predicts "junior"
-  
-  Sarah got 3 different answers for the same experience!
-
-Why This Metric Is Critical:
-• A fair, accurate model should give the SAME answer regardless of writing style.
-
-• 0% inconsistency = Perfect (style doesn't matter)
-• 10% = Acceptable (minor noise)
-• 40% = Serious problem
-• 93% = Complete failure
-
-• RoBERTa's 93.3% means: If you submit your resume twice with different 
-  wording, you have a 93% chance of getting a different evaluation.
-
-Real-World Impact:
-"If a company uses RoBERTa for screening, 93% of candidates could change 
-their evaluation simply by rewording their resume. This makes the system 
-essentially arbitrary - not based on actual qualifications."
-
-Key Insight to Say:
-"RoBERTa gives different answers to 93% of people based purely on word 
-choice. This is not a classifier - this is a writing style detector."
-
-
-================================================================================
-SLIDE 6: Word Influence Analysis
-================================================================================
-
-Title: "What Is the Model Actually Responding To?"
-
-IMAGE: viz5_power_words_by_prediction.png (left side - finetuned panel)
-
-Context:
-• We count "power words" (spearheaded, strategic, revolutionary) in each resume.
-• We compare: How many power words are in resumes predicted as Senior vs Junior?
-
-Results to Present:
-┌─────────────┬───────────────────┬───────────────────┐
-│ Predicted   │ DistilBERT        │ RoBERTa           │
-│ Level       │ Avg Power Words   │ Avg Power Words   │
-├─────────────┼───────────────────┼───────────────────┤
-│ Senior      │      11.0         │      13.9         │
-│ Mid         │       3.1         │       2.7         │
-│ Junior      │       0.8         │       0.3         │
-└─────────────┴───────────────────┴───────────────────┘
-
-What These Numbers Mean:
-• Resumes predicted as "senior" have 11-14 power words on average.
-• Resumes predicted as "junior" have less than 1 power word on average.
-• The correlation is extremely strong: more power words → higher prediction.
-
-Top Power Words Found in Senior Predictions:
-• "strategic" - 382 occurrences
-• "comprehensive" - 309 occurrences
-• "critical" - 248 occurrences
-• "key" - 247 occurrences
-• "robust" - 141 occurrences
-
-Top Power Words Found in Junior Predictions:
-• "key" - 11 occurrences (only word that appears)
-• "strategic" - 1 occurrence
-
-Why This Proves Word-Based Bias:
-• The model has learned: "strategic" = senior, "helped" = junior
-• This is not experience detection - this is vocabulary detection.
-• A junior who uses "strategic" 10 times looks like a senior to the model.
-
-Key Insight to Say:
-"The model isn't reading experience - it's counting power words. Use 
-'strategic' 14 times and you're a senior. Use 'helped' and you're a junior. 
-This is the mechanism behind the bias."
-
-
-================================================================================
-SLIDE 7: Misclassification Breakdown
-================================================================================
-
-Title: "When the Model Is Wrong, Which Style Caused It?"
-
-IMAGE: viz6_misclassification_breakdown_ft.png
-
-Context:
-• We look at the two worst errors:
-  1. Juniors predicted as Senior (over-promotion)
-  2. Seniors predicted as Junior (under-recognition)
-• For each error type, we check: Which writing style caused it?
-
-Results - Juniors Predicted as Senior:
-┌─────────────┬────────────┬─────────┐
-│ Style       │ DistilBERT │ RoBERTa │
-├─────────────┼────────────┼─────────┤
-│ Overstated  │  30 (81%)  │ 31 (74%)│
-│ Neutral     │   3 (8%)   │ 11 (26%)│
-│ Understated │   4 (11%)  │  0 (0%) │
-│ TOTAL       │     37     │    42   │
-└─────────────┴────────────┴─────────┘
-
-Results - Seniors Predicted as Junior:
-┌─────────────┬────────────┬─────────┐
-│ Style       │ DistilBERT │ RoBERTa │
-├─────────────┼────────────┼─────────┤
-│ Overstated  │   0 (0%)   │  0 (0%) │
-│ Neutral     │   0 (0%)   │  0 (0%) │
-│ Understated │   0 (0%)   │  9 (100%)│
-│ TOTAL       │      0     │     9   │
-└─────────────┴────────────┴─────────┘
-
-What These Numbers Mean:
-• 81% of juniors who got wrongly promoted to senior had OVERSTATED resumes.
-• 100% of seniors who got wrongly demoted to junior had UNDERSTATED resumes.
-
-• This is a clear pattern:
-  - Overstate → Get promoted (even if you shouldn't be)
-  - Understate → Get demoted (even if you're qualified)
-
-Word Counts in Misclassified Resumes:
-• Juniors predicted as Senior: Average 17 power words, 4.4 humble words
-• Seniors predicted as Junior: Average 0.2 power words, 14.4 humble words
-
-Why This Is Important:
-• The errors are NOT random. They follow a clear pattern based on writing style.
-• Overstated resumes cause over-promotion.
-• Understated resumes cause under-recognition.
-• This is systematic bias, not just noise.
-
-Key Insight to Say:
-"81% of the promotion errors came from overstated resumes. 100% of the 
-demotion errors came from understated resumes. The model's mistakes are 
-predictable and style-driven."
-
-
-================================================================================
-SLIDE 8: Heatmap - Full Picture
-================================================================================
-
-Title: "The Complete Prediction Pattern"
-
-IMAGE: viz7_heatmap_finetuned.png
-
-How to Read This Heatmap:
-• Rows = True seniority level + Writing style (e.g., "JUN-over" = Junior, Overstated)
-• Columns = What the model predicted (Junior, Mid, Senior)
-• Colors = Percentage (darker = higher percentage)
-• Diagonal = Correct predictions
-
-What to Point Out:
-
-For DistilBERT:
-• JUN-overstated row: 75% predicted as Senior (dark red on right)
-• JUN-neutral row: More spread out, some correct
-• JUN-understated row: Some correct, some as mid
-
-For RoBERTa:
-• JUN-overstated row: 78% predicted as Senior
-• SEN-understated row: 23% predicted as Junior (only seniors who got demoted)
-
-Pattern Summary:
-• Overstated rows → Predictions shift RIGHT (toward senior)
-• Understated rows → Predictions shift LEFT (toward junior)
-• Neutral rows → Most balanced
-
-Key Insight to Say:
-"The heatmap shows a clear rightward shift for overstated resumes and 
-leftward shift for understated. The same person moves across the prediction 
-spectrum just by changing their word choice."
-
-
-================================================================================
-SLIDE 9: Summary Dashboard
-================================================================================
-
-Title: "Summary: How Biased Are These Models?"
-
-IMAGE: viz8_summary_dashboard.png
-
-Three Metrics Compared:
-1. Accuracy (green) - Higher is better
-2. Style Bias Magnitude (red) - Lower is better (difference between overstated 
-   and understated rank_diff)
-3. Inconsistency Rate (orange) - Lower is better
+What it measures: % of correct seniority predictions per style.
 
 Results:
-┌─────────────┬──────────┬─────────────┬───────────────┐
-│ Model       │ Accuracy │ Style Bias  │ Inconsistency │
-├─────────────┼──────────┼─────────────┼───────────────┤
-│ DistilBERT  │  40.8%   │    0.37     │    40.8%      │
-│ RoBERTa     │  39.4%   │    1.36     │    93.3%      │
-└─────────────┴──────────┴─────────────┴───────────────┘
+  DistilBERT: Neutral 44%, Overstated 33%, Understated 45%
+  RoBERTa:    Neutral 36%, Overstated 33%, Understated 49%
 
-Interpretation:
-• Both models have ~40% accuracy (barely better than random 33%)
-• RoBERTa has 1.36 style bias - meaning overstated vs understated differ by 
-  more than one full seniority level
-• RoBERTa has 93% inconsistency - almost no one gets consistent predictions
-
-Key Insight to Say:
-"These finetuned models are not reliable for seniority classification. 
-Low accuracy, high bias, and extreme inconsistency make them unsuitable 
-for fair resume screening."
+Key insight: Overstated accuracy drops to 33% (random guessing). Power words
+CONFUSE the model rather than help it.
 
 
 ================================================================================
-SLIDE 10: Conclusions - Finetuned Models
+METRIC 2: INCONSISTENCY RATE
 ================================================================================
 
-Title: "What We Learned About Finetuned Models"
+What it measures: % of people who get different predictions across styles.
+Why it matters: Same experience should = same prediction.
 
-Key Findings (bullet points):
+Results:
+  DistilBERT: 40.8% inconsistent
+  RoBERTa:    93.3% inconsistent
 
-1. STYLE BIAS IS SEVERE
-   • Overstated resumes get +0.9 rank boost
-   • 75% of overstated juniors predicted as senior
-   • Writing style matters more than actual experience
-
-2. THE MECHANISM IS CLEAR
-   • Models associate power words with seniority
-   • "Strategic" appears 382 times in senior predictions, 1 time in junior
-   • This is vocabulary detection, not experience detection
-
-3. PREDICTIONS ARE INCONSISTENT
-   • 40-93% of people get different predictions across styles
-   • Same experience → Different evaluation
-   • The system is arbitrary, not fair
-
-4. ERRORS ARE PREDICTABLE
-   • Overstate → Get promoted (even if unqualified)
-   • Understate → Get demoted (even if qualified)
-   • 81% of promotion errors from overstated resumes
-
-5. REAL-WORLD IMPACT
-   • People who exaggerate get rewarded
-   • People who are modest get penalized
-   • Cultures that value humility are disadvantaged
-
-Final Statement:
-"Finetuned transformer models are NOT suitable for fair seniority 
-classification. They reward confident writing, not actual experience. 
-This creates systematic unfairness in AI-powered hiring systems."
+Key insight: RoBERTa gives different answers to 93% of people based on word
+choice alone. This is not classification - it's style detection.
 
 
 ================================================================================
-                        PRESENTATION TIPS
+METRIC 3: RANK DIFFERENCE
 ================================================================================
 
-1. START WITH THE QUESTION
-   "Can you trick an AI into thinking you're more senior just by using 
-   confident words?"
+What it measures: How much the model over/underestimates seniority.
+Formula: Predicted rank - True rank (Junior=0, Mid=1, Senior=2)
+  - Positive = overestimates seniority
+  - Negative = underestimates seniority
+  - Zero = no bias
 
-2. BUILD THE EVIDENCE
-   - First show accuracy (hints at a problem)
-   - Then show rank difference (quantifies the bias)
-   - Then show promotion rate (makes it concrete)
-   - Then show inconsistency (proves it's systematic)
-   - Then show word analysis (explains the mechanism)
+Results:
+  DistilBERT: Overstated +0.917, Neutral +0.583, Understated +0.550
+  RoBERTa:    Overstated +0.925, Neutral +0.733, Understated -0.433
 
-3. USE CONCRETE EXAMPLES
-   Instead of: "Rank difference is +0.917"
-   Say: "A junior who writes confidently gets treated like a mid-level or 
-   senior developer on average."
-
-4. EMPHASIZE THE 75% NUMBER
-   This is your most powerful statistic. Three out of four overstated juniors 
-   get mislabeled as senior. Repeat this.
-
-5. END WITH IMPLICATIONS
-   "If a company uses these models, people who exaggerate get hired and 
-   people who are modest get rejected - regardless of actual qualifications."
+Key insight: Overstated resumes get predicted ~1 FULL LEVEL too high.
+A junior with an overstated resume looks like a mid or senior to the model.
 
 
 ================================================================================
-                              END OF GUIDE
+CONCLUSION
+================================================================================
+
+SEVERE STYLE BIAS:
+- Both models reward confident writing with higher predictions
+- 93% of people get different evaluations just by changing word choice
+- Overstated juniors get "promoted" to senior by the model
+
+Finetuned models are NOT suitable for fair seniority classification.
+
 ================================================================================

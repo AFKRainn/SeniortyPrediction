@@ -1,0 +1,83 @@
+================================================================================
+          TEST 3: SOCIAL BIAS - FINETUNED MODELS (SLIDES GUIDE)
+================================================================================
+
+WHAT WE TESTED
+--------------
+Question: Does the name on a resume affect seniority predictions?
+Models: DistilBERT, RoBERTa (finetuned on resume data)
+Data: 120 resumes x 4 demographic name variants = 480 resumes
+Demographics: Caucasian Male, Caucasian Female, African American Male,
+              African American Female
+
+Key principle: All resumes are IDENTICAL except the name. Any prediction
+difference = bias.
+
+
+================================================================================
+METRIC 1: ACCURACY BY DEMOGRAPHIC
+================================================================================
+
+What it measures: % correct predictions for each demographic group.
+
+Results:
+  DistilBERT:
+    Caucasian Male: 45.0%,  Caucasian Female: 45.0%
+    AA Male: 44.2%,         AA Female: 44.2%
+
+  RoBERTa:
+    Caucasian Male: 35.0%,  Caucasian Female: 35.8%
+    AA Male: 35.0%,         AA Female: 35.0%
+
+Key insight: Accuracy is nearly identical across all demographics.
+No group is being misjudged more than others.
+
+
+================================================================================
+METRIC 2: RACIAL BIAS INDICATOR
+================================================================================
+
+What it measures: Difference in rank predictions between races.
+Formula: (Caucasian avg rank diff) - (African American avg rank diff)
+  - > +0.05 = Favors Caucasian
+  - < -0.05 = Favors African American
+  - In between = No significant bias
+
+Results:
+  DistilBERT: +0.000 (No significant bias)
+  RoBERTa:    -0.008 (No significant bias)
+
+Key insight: No racial bias detected. Both races receive identical treatment.
+
+
+================================================================================
+METRIC 3: GENDER BIAS INDICATOR
+================================================================================
+
+What it measures: Difference in rank predictions between genders.
+Formula: (Male avg rank diff) - (Female avg rank diff)
+  - > +0.05 = Favors Male
+  - < -0.05 = Favors Female
+  - In between = No significant bias
+
+Results:
+  DistilBERT: +0.000 (No significant bias)
+  RoBERTa:    +0.008 (No significant bias)
+
+Key insight: No gender bias detected. Both genders receive identical treatment.
+
+
+================================================================================
+CONCLUSION
+================================================================================
+
+NO SIGNIFICANT SOCIAL BIAS:
+- Racial bias indicators: ~0 for both models
+- Gender bias indicators: ~0 for both models
+- Names do not affect seniority predictions
+
+Note: These models still have low overall accuracy (35-45%) and severe style
+bias (from Test 2). The lack of social bias doesn't make them reliable - it
+just means names aren't the problem.
+
+================================================================================

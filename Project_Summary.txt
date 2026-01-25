@@ -1,449 +1,188 @@
 ================================================================================
-        RESUME SENIORITY PREDICTION BIAS TESTING - PROJECT SUMMARY
+                    RESUME SENIORITY PREDICTION BIAS TESTING
 ================================================================================
 
-OVERVIEW
---------
-This project tests whether AI models exhibit BIAS when predicting seniority 
-levels (junior, mid, senior) from resumes.
+PROJECT GOAL
+------------
+Test whether AI models exhibit bias when predicting seniority levels (junior, 
+mid, senior) from resumes. We examine two types of bias:
 
-We tested two types of bias:
-  1. STYLE BIAS (Test 2): Does confident vs humble writing affect predictions?
-  2. SOCIAL BIAS (Test 3): Does the name on a resume affect predictions?
+  1. STYLE BIAS: Does confident vs humble writing affect predictions?
+  2. SOCIAL BIAS: Does the name on a resume affect predictions?
 
 
 ================================================================================
-                              MODELS TESTED
+MODELS TESTED
 ================================================================================
 
-FINETUNED MODELS (trained on our resume dataset):
-  - DistilBERT
-  - RoBERTa
+Finetuned Models (trained on resume data):
+  - DistilBERT (66M parameters)
+  - RoBERTa (125M parameters)
 
-STATE-OF-THE-ART LLMs (via OpenRouter API):
+State-of-the-Art LLMs (via OpenRouter API):
   - GPT-5 (OpenAI)
   - Gemini 3 Pro (Google)
   - Claude Sonnet 4.5 (Anthropic)
 
 
 ================================================================================
-                          DATA OVERVIEW
+DATA
 ================================================================================
 
-TEST 2 DATA: 120 resumes × 3 styles = 360 variations
-  - Each resume rewritten in: OVERSTATED, NEUTRAL, UNDERSTATED
-  - Distribution: 40 junior, 40 mid, 40 senior
+Test 2 - Style Bias:
+  - 120 resumes, each rewritten in 3 styles (360 total)
+  - NEUTRAL: Professional, factual
+  - OVERSTATED: Confident, power words ("spearheaded", "revolutionized")
+  - UNDERSTATED: Humble, modest words ("helped", "assisted")
+  - Same experience across all versions - only wording changed
 
-TEST 3 DATA: 120 resumes × 4 demographics = 480 variations
-  - Same neutral resumes, only the NAME changed
-  - Demographics: Caucasian Male, Caucasian Female, African American Male, 
+Test 3 - Social Bias:
+  - 120 resumes x 4 name variants (480 total)
+  - Identical content, only the name changed
+  - Demographics: Caucasian Male, Caucasian Female, African American Male,
     African American Female
 
 
 ================================================================================
-================================================================================
-                    PART 1: DATA VALIDATION METRICS
-================================================================================
+METRICS
 ================================================================================
 
-Before testing for bias, we must verify our generated data is valid. These 
-metrics confirm the LLM actually created overstated/understated versions.
+TEST 2 METRICS (Style Bias):
 
---------------------------------------------------------------------------------
-VALIDATION METRIC 1: TONE SCORE
---------------------------------------------------------------------------------
+  1. ACCURACY
+     How often the model predicts the correct seniority level.
+     - 33% = random guessing, 100% = perfect
 
-WHAT IT MEASURES:
-  Does the resume use more "power words" or "humble words"?
+  2. INCONSISTENCY RATE
+     % of people who get different predictions for the same resume written
+     in different styles.
+     - 0% = style has no influence (ideal)
+     - High % = model is influenced by word choice, not experience
 
-EXAMPLE:
-  Sarah's OVERSTATED resume says: "Spearheaded a revolutionary platform that 
-  dramatically transformed the organization's strategic capabilities."
-  → Power words: spearheaded, revolutionary, dramatically, transformed, strategic
-  → Power count: 5, Humble count: 0
-  
-  Sarah's UNDERSTATED resume says: "Helped the team build a basic tool that 
-  supported some of the company's standard processes."
-  → Humble words: helped, team, basic, supported, some, standard
-  → Power count: 0, Humble count: 6
+  3. RANK DIFFERENCE
+     Average difference between predicted and true seniority rank.
+     (Junior=0, Mid=1, Senior=2. Rank Diff = Predicted - True)
+     - +0.9 means predicting almost 1 level too high on average
+     - 0 means no systematic bias
+     - -0.5 means predicting half a level too low on average
 
-FORMULA:
-  Tone Score = (power_count - humble_count) / (power_count + humble_count + 1)
+TEST 3 METRICS (Social Bias):
 
-  Overstated example: (5 - 0) / (5 + 0 + 1) = 5/6 = +0.83
-  Understated example: (0 - 6) / (0 + 6 + 1) = -6/7 = -0.86
+  1. ACCURACY
+     Same as above, measured per demographic group.
 
-INTERPRETATION:
-  +1.0 = All power words, no humble words (very overstated)
-   0.0 = Equal balance
-  -1.0 = All humble words, no power words (very understated)
+  2. RACIAL BIAS INDICATOR
+     (Caucasian avg rank diff) - (African American avg rank diff)
+     - > +0.05 = Favors Caucasian names
+     - -0.05 to +0.05 = No significant bias
+     - < -0.05 = Favors African American names
 
-WORD LIST SOURCE (LIMITATION):
-  The word lists were curated from career counseling best practices and 
-  linguistic research on hedging - NOT from a single academic study. This is
-  acceptable for validation since we only need RELATIVE differences.
-
-RESULTS:
-  ┌─────────────┬────────────┬───────────┬────────────┐
-  │ Style       │ Tone Score │ Avg Power │ Avg Humble │
-  ├─────────────┼────────────┼───────────┼────────────┤
-  │ Overstated  │   +0.694   │   23.8    │    3.9     │
-  │ Neutral     │   -0.383   │    2.8    │    6.8     │
-  │ Understated │   -0.841   │    0.7    │   13.1     │
-  └─────────────┴────────────┴───────────┴────────────┘
-
-WHAT THIS TELLS US:
-  ✓ Clear ordering: Overstated > Neutral > Understated
-  ✓ Overstated resumes use 24 power words on average
-  ✓ Understated resumes use only 0.7 power words on average
-  ✓ DATA IS VALID - the LLM successfully created distinct styles
-
---------------------------------------------------------------------------------
-VALIDATION METRIC 2: SEMANTIC SIMILARITY
---------------------------------------------------------------------------------
-
-WHAT IT MEASURES:
-  Do all 3 versions of a resume describe the SAME experience?
-
-WHY IT MATTERS:
-  If the overstated version invented fake achievements, our bias test would be
-  invalid. We need to confirm only the WORDING changed, not the content.
-
-EXAMPLE:
-  Sarah's neutral resume: "Built a data pipeline using Python."
-  Sarah's overstated resume: "Architected a robust, enterprise-wide data 
-  pipeline leveraging cutting-edge Python frameworks."
-  
-  Same job. Same skill. Just different words.
-  Semantic similarity should be HIGH (>0.5).
-
-HOW IT'S CALCULATED:
-  1. Convert each resume to a TF-IDF vector (word importance scores)
-  2. Calculate cosine similarity between vectors
-  3. Range: 0.0 (completely different) to 1.0 (identical)
-
-RESULTS:
-  ┌──────────────────────────┬───────┬───────┐
-  │ Comparison               │ Mean  │  Min  │
-  ├──────────────────────────┼───────┼───────┤
-  │ Neutral ↔ Overstated     │ 0.722 │ 0.542 │
-  │ Neutral ↔ Understated    │ 0.827 │ 0.664 │
-  └──────────────────────────┴───────┴───────┘
-
-WHAT THIS TELLS US:
-  ✓ All similarities > 0.5 (same content, different wording)
-  ✓ No fake achievements were invented
-  ✓ DATA IS VALID - content is preserved across style variations
+  3. GENDER BIAS INDICATOR
+     (Male avg rank diff) - (Female avg rank diff)
+     - > +0.05 = Favors Male names
+     - -0.05 to +0.05 = No significant bias
+     - < -0.05 = Favors Female names
 
 
 ================================================================================
-================================================================================
-                    PART 2: BIAS TEST METRICS
-================================================================================
+RESULTS: TEST 2 - STYLE BIAS
 ================================================================================
 
-These metrics measure whether AI models exhibit bias in their predictions.
+FINETUNED MODELS:
+-----------------
+Accuracy:
+  DistilBERT: Neutral 44%, Overstated 33%, Understated 45%
+  RoBERTa:    Neutral 36%, Overstated 33%, Understated 49%
 
---------------------------------------------------------------------------------
-TEST METRIC 1: ACCURACY
---------------------------------------------------------------------------------
+Rank Difference:
+  DistilBERT: Overstated +0.917, Neutral +0.583, Understated +0.550
+  RoBERTa:    Overstated +0.925, Neutral +0.733, Understated -0.433
 
-WHAT IT MEASURES:
-  How often does the model predict the CORRECT seniority level?
+Inconsistency Rate:
+  DistilBERT: 40.8%
+  RoBERTa:    93.3%
 
-EXAMPLE:
-  We test 100 resumes. The model predicts:
-  - 70 correctly (junior→junior, mid→mid, senior→senior)
-  - 30 incorrectly
-  
-  Accuracy = 70/100 = 70%
+Finding: SEVERE STYLE BIAS. Overstated resumes get predicted ~1 level higher.
+RoBERTa changes predictions for 93% of people based on writing style alone.
 
-INTERPRETATION:
-  33% = Random guessing (3 classes)
-  50% = Better than random
-  80% = Good
-  95%+ = Excellent
+LLMs:
+-----
+Accuracy:
+  GPT-5:     Neutral 72%, Overstated 59%, Understated 89%
+  Gemini 3:  Neutral 79%, Overstated 78%, Understated 92%
+  Sonnet 4.5: Neutral 99%, Overstated 98%, Understated 98%
 
-WHY IT MATTERS FOR BIAS:
-  Compare accuracy ACROSS groups. If:
-  - Neutral resumes: 80% accuracy
-  - Overstated resumes: 50% accuracy
-  → Confident language CONFUSES the model
+Rank Difference:
+  GPT-5:     Overstated +0.408, Neutral +0.283, Understated +0.108
+  Gemini 3:  Overstated +0.218, Neutral +0.210, Understated +0.075
+  Sonnet 4.5: Overstated +0.000, Neutral +0.008, Understated -0.017
 
---------------------------------------------------------------------------------
-TEST METRIC 2: RANK DIFFERENCE
---------------------------------------------------------------------------------
+Inconsistency Rate:
+  GPT-5: 32.5%, Gemini 3: 16.7%, Sonnet 4.5: 4.2%
 
-WHAT IT MEASURES:
-  Does the model systematically OVERESTIMATE or UNDERESTIMATE seniority?
-
-SETUP:
-  Convert seniority to numbers: Junior=0, Mid=1, Senior=2
-
-FORMULA:
-  Rank Difference = Predicted Rank - True Rank
-
-EXAMPLE:
-  Sarah is actually a JUNIOR (rank 0).
-  
-  Case A: Model predicts "junior" → Rank diff = 0 - 0 = 0 (correct!)
-  Case B: Model predicts "mid" → Rank diff = 1 - 0 = +1 (overestimated by 1 level)
-  Case C: Model predicts "senior" → Rank diff = 2 - 0 = +2 (overestimated by 2 levels)
-  
-  If we average rank diff across all overstated resumes and get +0.9, it means
-  the model predicts almost ONE FULL LEVEL too high for overstated writing.
-
-INTERPRETATION:
-  +1.0 = Model overestimates by one full level on average
-   0.0 = No systematic bias
-  -1.0 = Model underestimates by one full level on average
-
-WHY IT MATTERS FOR BIAS:
-  Compare rank_diff ACROSS groups:
-  - Overstated rank_diff: +0.9
-  - Understated rank_diff: +0.1
-  → Model rewards confident language with higher seniority predictions
-
---------------------------------------------------------------------------------
-TEST METRIC 3: INCONSISTENCY RATE
---------------------------------------------------------------------------------
-
-WHAT IT MEASURES:
-  What percentage of people got DIFFERENT predictions for the same resume 
-  written in different styles (or with different names)?
-
-EXAMPLE:
-  Sarah is a JUNIOR. We show the model her 3 resume versions:
-  - Neutral version → Model predicts "mid"
-  - Overstated version → Model predicts "senior"
-  - Understated version → Model predicts "junior"
-  
-  Sarah got 3 DIFFERENT predictions for the SAME experience.
-  She is counted as INCONSISTENT.
-  
-  If 40 out of 100 people are like Sarah:
-  Inconsistency Rate = 40/100 = 40%
-
-INTERPRETATION:
-  0%  = Perfect. Style/name has zero influence on predictions.
-  10% = 1 in 10 candidates judged differently based on wording alone.
-  40% = 4 in 10 candidates - serious bias.
-  90% = Almost everyone's evaluation changes based on style - critical.
-
-WHY IT MATTERS:
-  If inconsistency is 40%, then 40% of job candidates would receive different
-  seniority assessments simply by rewording their resume - not by gaining more
-  experience. That's unfair.
-
---------------------------------------------------------------------------------
-TEST METRIC 4: RACIAL BIAS INDICATOR
---------------------------------------------------------------------------------
-
-WHAT IT MEASURES:
-  Does the model give higher predictions to Caucasian names vs African American 
-  names?
-
-FORMULA:
-  Racial Bias = (Caucasian avg rank_diff) - (African American avg rank_diff)
-
-EXAMPLE:
-  - Caucasian names average rank_diff: +0.3
-  - African American names average rank_diff: +0.1
-  - Racial Bias = 0.3 - 0.1 = +0.2 (favors Caucasian)
-
-INTERPRETATION:
-  > +0.05 = Favors Caucasian names
-  -0.05 to +0.05 = No significant racial bias
-  < -0.05 = Favors African American names
-
---------------------------------------------------------------------------------
-TEST METRIC 5: GENDER BIAS INDICATOR
---------------------------------------------------------------------------------
-
-WHAT IT MEASURES:
-  Does the model give higher predictions to Male names vs Female names?
-
-FORMULA:
-  Gender Bias = (Male avg rank_diff) - (Female avg rank_diff)
-
-INTERPRETATION:
-  > +0.05 = Favors Male names
-  -0.05 to +0.05 = No significant gender bias
-  < -0.05 = Favors Female names
+Finding: LLMs are much more robust. Claude Sonnet 4.5 achieves 98% accuracy
+with near-zero style bias and only 4.2% inconsistency.
 
 
 ================================================================================
-================================================================================
-                    PART 3: RESULTS
-================================================================================
+RESULTS: TEST 3 - SOCIAL BIAS
 ================================================================================
 
---------------------------------------------------------------------------------
-TEST 2 RESULTS: STYLE BIAS - FINETUNED MODELS
---------------------------------------------------------------------------------
+FINETUNED MODELS:
+-----------------
+Accuracy by Demographic:
+  All groups ~44-45% (DistilBERT) and ~35% (RoBERTa) - no significant differences
 
-ACCURACY:
-  ┌─────────────┬────────────┬─────────┐
-  │ Style       │ DistilBERT │ RoBERTa │
-  ├─────────────┼────────────┼─────────┤
-  │ Neutral     │   44.2%    │  35.8%  │
-  │ Overstated  │   33.3%    │  33.3%  │
-  │ Understated │   45.0%    │  49.2%  │
-  └─────────────┴────────────┴─────────┘
+Racial Bias Indicator:
+  DistilBERT: +0.000 (No significant bias)
+  RoBERTa:    -0.008 (No significant bias)
 
-RANK DIFFERENCE:
-  ┌─────────────┬────────────┬─────────┐
-  │ Style       │ DistilBERT │ RoBERTa │
-  ├─────────────┼────────────┼─────────┤
-  │ Overstated  │   +0.917   │ +0.925  │
-  │ Neutral     │   +0.583   │ +0.733  │
-  │ Understated │   +0.550   │ -0.433  │
-  └─────────────┴────────────┴─────────┘
+Gender Bias Indicator:
+  DistilBERT: +0.000 (No significant bias)
+  RoBERTa:    +0.008 (No significant bias)
 
-JUNIORS PREDICTED AS SENIOR (the worst mistake):
-  ┌───────────────────────────┬────────────┬─────────┐
-  │ Combination               │ DistilBERT │ RoBERTa │
-  ├───────────────────────────┼────────────┼─────────┤
-  │ Junior + Overstated       │   75.0%    │  77.5%  │
-  │ Junior + Neutral          │    7.5%    │  27.5%  │
-  │ Junior + Understated      │   10.0%    │   0.0%  │
-  └───────────────────────────┴────────────┴─────────┘
+Finding: NO significant social bias detected. Names do not affect predictions.
 
-INCONSISTENCY:
-  - DistilBERT: 40.8%
-  - RoBERTa: 93.3%
+LLMs:
+-----
+Accuracy by Demographic:
+  GPT-5: 67-72% across all groups
+  Gemini 3: 77-79% across all groups
+  Sonnet 4.5: 98-99% across all groups
 
-INTERPRETATION:
-  → Finetuned models have SEVERE style bias
-  → 75-77% of juniors with overstated resumes get predicted as senior
-  → Confident language "promotes" unqualified candidates
+Racial Bias Indicator:
+  GPT-5: -0.008, Gemini 3: -0.004, Sonnet 4.5: +0.000
+  All within "No significant bias" threshold.
 
---------------------------------------------------------------------------------
-TEST 2 RESULTS: STYLE BIAS - LLMs
---------------------------------------------------------------------------------
+Gender Bias Indicator:
+  GPT-5: -0.033, Gemini 3: -0.004, Sonnet 4.5: +0.000
+  All within "No significant bias" threshold.
 
-ACCURACY:
-  ┌─────────────┬───────┬─────────┬───────────┐
-  │ Style       │ GPT-5 │ Gemini3 │ Sonnet4.5 │
-  ├─────────────┼───────┼─────────┼───────────┤
-  │ Neutral     │ 71.7% │  79.0%  │   99.2%   │
-  │ Overstated  │ 59.2% │  78.2%  │   98.3%   │
-  │ Understated │ 89.2% │  92.5%  │   98.3%   │
-  └─────────────┴───────┴─────────┴───────────┘
-
-RANK DIFFERENCE:
-  ┌─────────────┬────────┬─────────┬───────────┐
-  │ Style       │ GPT-5  │ Gemini3 │ Sonnet4.5 │
-  ├─────────────┼────────┼─────────┼───────────┤
-  │ Overstated  │ +0.408 │  +0.218 │   +0.000  │
-  │ Neutral     │ +0.283 │  +0.210 │   +0.008  │
-  │ Understated │ +0.108 │  +0.075 │   -0.017  │
-  └─────────────┴────────┴─────────┴───────────┘
-
-INCONSISTENCY:
-  - GPT-5: 32.5%
-  - Gemini 3: 16.7%
-  - Sonnet 4.5: 4.2%
-
-INTERPRETATION:
-  → Claude Sonnet 4.5 is nearly immune to style bias
-  → 99% accuracy, ~0 rank difference, only 4% inconsistency
-  → LLMs significantly outperform finetuned models
-
---------------------------------------------------------------------------------
-TEST 3 RESULTS: SOCIAL BIAS - FINETUNED MODELS
---------------------------------------------------------------------------------
-
-ACCURACY BY DEMOGRAPHIC:
-  All demographics have similar accuracy (44-45% DistilBERT, 35% RoBERTa)
-  → No accuracy differences based on name
-
-BIAS INDICATORS:
-  ┌──────────────┬────────────┬─────────┐
-  │ Bias Type    │ DistilBERT │ RoBERTa │
-  ├──────────────┼────────────┼─────────┤
-  │ Racial Bias  │   +0.000   │ -0.008  │
-  │ Gender Bias  │   +0.000   │ +0.008  │
-  └──────────────┴────────────┴─────────┘
-
-INCONSISTENCY:
-  - DistilBERT: 2.5%
-  - RoBERTa: 1.7%
-
-INTERPRETATION:
-  → NO significant racial or gender bias detected
-  → Names rarely change predictions
-
---------------------------------------------------------------------------------
-TEST 3 RESULTS: SOCIAL BIAS - LLMs
---------------------------------------------------------------------------------
-
-BIAS INDICATORS:
-  ┌──────────────┬────────┬─────────┬───────────┐
-  │ Bias Type    │ GPT-5  │ Gemini3 │ Sonnet4.5 │
-  ├──────────────┼────────┼─────────┼───────────┤
-  │ Racial Bias  │ -0.008 │  -0.004 │   +0.000  │
-  │ Gender Bias  │ -0.033 │  -0.004 │   +0.000  │
-  └──────────────┴────────┴─────────┴───────────┘
-
-INCONSISTENCY:
-  - GPT-5: 18.3%
-  - Gemini 3: 12.5%
-  - Sonnet 4.5: 1.7%
-
-INTERPRETATION:
-  → NO significant racial or gender bias detected
-  → All bias indicators within ±0.05 threshold
+Finding: NO significant social bias detected in any model.
 
 
 ================================================================================
-                          KEY FINDINGS
+KEY CONCLUSIONS
 ================================================================================
 
-1. STYLE BIAS IS REAL
-   - Finetuned models: 75% of overstated juniors predicted as senior
-   - Power words strongly influence predictions
-   - People who exaggerate get rewarded
+1. STYLE BIAS EXISTS IN FINETUNED MODELS
+   - Overstated resumes get rated ~1 level higher
+   - 93% inconsistency means predictions are almost arbitrary based on wording
 
-2. LLMs ARE MORE ROBUST
-   - Claude Sonnet 4.5: 98% accuracy, near-zero bias
-   - GPT-5 and Gemini have moderate bias but far less than finetuned models
+2. LLMs ARE MORE ROBUST TO STYLE BIAS
+   - Claude Sonnet 4.5: 98% accuracy, ~0 bias, 4% inconsistency
+   - GPT-5 and Gemini 3 have moderate bias but far less than finetuned models
 
-3. SOCIAL BIAS IS MINIMAL
-   - No significant racial or gender bias in any model
-   - Changing names did not significantly change predictions
+3. NO SIGNIFICANT SOCIAL BIAS DETECTED
+   - Race and gender do not significantly affect predictions in any model
+   - Changing names did not change seniority predictions
 
 4. BEST MODEL: Claude Sonnet 4.5
-   - 98.8% accuracy
-   - ~0 style bias
-   - ~0 social bias
+   - 98-99% accuracy across all tests
+   - Near-zero style and social bias
    - Only 1.7-4.2% inconsistency
 
+RECOMMENDATION: Use SOTA LLMs (especially Claude Sonnet 4.5) over finetuned
+transformers for resume screening tasks.
 
-================================================================================
-                          LIMITATIONS
-================================================================================
-
-1. Word lists curated from best practices, not a single academic study
-2. 120 base resumes - larger sample would increase confidence
-3. Names from US research - may not apply to other cultures
-4. Tech/software resumes only - other industries may differ
-
-
-================================================================================
-                          CONCLUSION
-================================================================================
-
-AI resume screening systems CAN be influenced by writing style. Confident 
-language correlates with higher seniority predictions, especially in finetuned
-models.
-
-However, modern LLMs (especially Claude Sonnet 4.5) have largely overcome this
-bias. Social bias (race/gender) appears minimal across all models tested.
-
-RECOMMENDATION: Use SOTA LLMs over finetuned transformers for resume screening.
-
-
-================================================================================
-                        END OF SUMMARY
 ================================================================================
