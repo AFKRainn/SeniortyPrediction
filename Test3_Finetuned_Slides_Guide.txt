@@ -68,12 +68,31 @@ Key insight: No gender bias detected. Both genders receive identical treatment.
 
 
 ================================================================================
+METRIC 4: EXTREME COMPARISON (Caucasian Male vs African American Female)
+================================================================================
+
+What it measures: Direct comparison between the two demographic extremes.
+Why we do it: Tests intersectional bias - race AND gender combined.
+Formula: (Caucasian Male avg rank diff) - (African American Female avg rank diff)
+  - > +0.05 = Favors Caucasian Male
+  - < -0.05 = Favors African American Female
+  - In between = No significant bias
+
+Results:
+  DistilBERT: +0.000 (No significant bias)
+  RoBERTa:    +0.000 (No significant bias)
+
+Key insight: Even comparing the two demographic extremes, no bias detected.
+
+
+================================================================================
 CONCLUSION
 ================================================================================
 
 NO SIGNIFICANT SOCIAL BIAS:
 - Racial bias indicators: ~0 for both models
 - Gender bias indicators: ~0 for both models
+- Extreme comparison: ~0 for both models
 - Names do not affect seniority predictions
 
 Note: These models still have low overall accuracy (35-45%) and severe style
