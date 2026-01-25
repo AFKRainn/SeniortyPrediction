@@ -1,0 +1,136 @@
+================================================================================
+                    SUMMARY METRICS EVALUATION GUIDE
+================================================================================
+
+PURPOSE
+-------
+This notebook compares the quality of AI-generated resume summaries against
+the original summaries found in the source dataset. It answers: "Are our
+generated summaries better than the originals?"
+
+
+================================================================================
+CONTEXT
+================================================================================
+
+We have two sets of summaries:
+- ORIGINAL: Summaries from master_resumes_original.jsonl (the raw dataset)
+- GENERATED: Summaries created by our AI model
+
+Many original summaries in resume datasets are poor quality - too short,
+generic, or missing entirely. We generated new summaries to improve data
+quality for model training.
+
+
+================================================================================
+METRIC 1: WORD COUNT COMPARISON
+================================================================================
+
+WHAT IT MEASURES:
+Are the summaries a reasonable length?
+
+WHY WE DO IT:
+A good summary should be substantial enough to convey the candidate's value
+proposition. Very short summaries (< 30 words) are usually incomplete or
+generic phrases like "Seeking opportunity."
+
+HOW IT WORKS:
+- Split each summary into words
+- Count the words
+- Compare averages, min, max, and "too short" counts
+
+RESULTS:
+                    Original        Generated
+  Average:          20 words        60 words
+  Min:              1               20
+  Max:              109             90
+  Too short (<30):  4,685           2
+
+INTERPRETATION:
+- Original summaries average only 20 words - barely a sentence
+- 4,685 original summaries are under 30 words (essentially useless)
+- Generated summaries average 60 words - a proper paragraph
+- Only 2 generated summaries are under 30 words
+- CONCLUSION: Generated summaries are much more complete
+
+
+================================================================================
+METRIC 2: SEMANTIC SIMILARITY TO RESUME
+================================================================================
+
+WHAT IT MEASURES:
+How well does the summary capture the actual content of the resume?
+
+WHY WE DO IT:
+A good summary should reflect the specific experience, skills, and projects
+listed in the resume - not be a generic statement that could apply to anyone.
+
+HOW IT WORKS:
+
+Step 1: Prepare the texts
+  - RESUME TEXT: Combine experience + skills + projects from the resume
+  - SUMMARY TEXT: The summary being evaluated
+
+Step 2: Convert to embeddings
+  - Use SentenceTransformer model (all-MiniLM-L6-v2)
+  - This model converts text into a 384-dimensional vector
+  - The vector represents the "meaning" of the text
+  - Similar meanings = similar vectors
+
+Step 3: Calculate cosine similarity
+  - Compare the resume vector vs the summary vector
+  - Cosine similarity measures the angle between vectors
+  - Score range: 0.0 (unrelated) to 1.0 (identical meaning)
+
+WHY SEMANTIC SIMILARITY (not keyword matching):
+  - Keyword matching: "Software Engineer" ≠ "Developer" (0% match)
+  - Semantic similarity: "Software Engineer" ≈ "Developer" (high match)
+  - Semantic understands meaning, not just words
+
+RESULTS:
+                    Original        Generated
+  Mean Similarity:  0.350           0.660
+
+INTERPRETATION:
+- Original summaries: 0.350 similarity
+  → Low score suggests they're generic or unrelated to resume content
+  → Many may be template phrases not grounded in actual experience
+
+- Generated summaries: 0.660 similarity
+  → Much higher - AI actually reads the resume and summarizes it
+  → The summary reflects the specific content of that resume
+
+- CONCLUSION: Generated summaries are much more grounded in the actual
+  resume content than the originals
+
+
+================================================================================
+VISUALIZATION
+================================================================================
+
+The notebook includes two histograms:
+
+1. WORD COUNT DISTRIBUTION
+   - Shows the spread of word counts for both summary types
+   - Original: Peak near 10-20 words, long tail
+   - Generated: Tighter distribution around 50-70 words
+
+2. SEMANTIC SIMILARITY DISTRIBUTION
+   - Shows how similar summaries are to their resumes
+   - Original: Wide spread, many low values
+   - Generated: Clustered higher, more consistently relevant
+
+
+================================================================================
+OVERALL CONCLUSION
+================================================================================
+
+The generated summaries are objectively better than the originals:
+
+1. LENGTH: Generated are 3x longer (60 vs 20 words)
+2. QUALITY: Generated are 2x more semantically similar (0.66 vs 0.35)
+3. COMPLETENESS: Only 2 generated are "too short" vs 4,685 originals
+
+This validates our decision to generate new summaries for the dataset.
+
+================================================================================
