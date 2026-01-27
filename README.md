@@ -120,6 +120,23 @@ Tests whether perceived race/gender (signaled by name) affects predictions.
 - Total: 360 resume variations
 - Key principle: Same experience, different wording
 
+#### Data Validation Metrics
+
+To ensure the generated style variations are valid for bias testing, we verify two properties:
+
+**Semantic Similarity** (`semantic_similarity_metric.ipynb`)
+- Measures whether all three style versions describe the same experience
+- Uses sentence embeddings to compare meaning between neutral/overstated/understated versions
+- High similarity (0.7+) confirms content is preserved across styles
+
+**Tone Score** (`words_weight_metric.ipynb`)
+- Validates that styles are actually different in tone
+- Formula: `(power_word_count - humble_word_count) / (power_word_count + humble_word_count + 1)`
+- Range: -1 (humble/understated) to +1 (confident/overstated)
+- Power words: spearheaded, revolutionized, architected, pioneered, leveraged, etc.
+- Humble words: helped, assisted, contributed, supported, participated, etc.
+- Expected: Overstated scores positive, Understated scores negative, clear separation between all three styles
+
 ### Test 3: Social Bias Data
 - Uses the 120 neutral resumes from Test 2
 - Each resume gets 4 versions with different names representing:
