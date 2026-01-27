@@ -196,9 +196,10 @@ Uses sentence embeddings (all-MiniLM-L6-v2) to measure how well summaries captur
 ## How to Use
 
 1. **Data Preparation**: Run `clean_data.ipynb` to prepare the dataset
-2. **Train Models**: Run notebooks in `Smaller Models/` to finetune DistilBERT and RoBERTa
-3. **Test 1 - Baseline**: Run `Baseline/baseline.ipynb` to verify models can classify seniority
-4. **Generate Test Data**: Run generation notebooks in `Test 2 Data/` and `Test 3 Data/`
+3. **Test 1 - Baseline**: Run `Baseline/baseline.ipynb`,  `Smaller Models/distillbert.ipynb`, `Smaller Models/roberta.ipynb`, `Big Models/*.ipynb` to verify models can classify seniority
+4. **Generate Test 2 and 3 Data**: Run generation notebooks in `Test 2 Data/` and `Test 3 Data/`
 5. **Test 2 - Style Bias**: Execute notebooks in `Test 2/` folder
 6. **Test 3 - Social Bias**: Execute notebooks in `Test 3/` folder
 7. **Analyze Results**: Use `Data_visualization.ipynb` for visual analysis
+
+Note: You will need an openrouter API to run tests on LLMs  and to generate test 2 data.
