@@ -15,6 +15,8 @@ This dataset contains a mix of real (anonymized) and synthetic resumes normalize
 
 Test 2 and Test 3 use separately generated synthetic data to enable controlled bias testing (see Test Data Generation section below).
 
+Note: In the repository the cleaned files are provided. So you don't need to run the clean_data.ipynb file and all other notebooks work. If you have your own data or want to try on the same data and run everything from the start, you may download the dataset from the provided link, but note that you will need an API key (Openrouter) for generating summaries.
+
 ## Models Tested
 
 ### Finetuned Models (trained on resume data)
@@ -33,6 +35,8 @@ Test 2 and Test 3 use separately generated synthetic data to enable controlled b
 ### Test 1: Baseline Evaluation
 Before testing for bias, we first establish baseline performance using the source dataset. This is critical because **bias measurements are only meaningful if models can actually perform the task**. A model with random-chance accuracy provides no useful signal about bias - we need to confirm the models have learned to classify seniority before examining whether that classification is influenced by irrelevant factors like writing style or candidate names.
 
+The files are Baseline, Big Models, and Smaller Models
+
 - **Data**: Mixed real and synthetic resumes from the Hugging Face dataset
 - **Purpose**: Verify models can classify seniority accurately under normal conditions
 
@@ -42,11 +46,16 @@ Tests whether writing style (confident vs humble) affects predictions, independe
 - **Data**: 120 resumes × 3 styles = 360 synthetically generated variations
 - **Purpose**: Isolate style as a variable while keeping experience constant
 
+The files can be found in Test 2 and Test 2 Data directories.
+
 ### Test 3: Social Bias
 Tests whether perceived race/gender (signaled by name) affects predictions.
 
 - **Data**: 120 resumes × 4 demographics = 480 variations (only the name changes)
 - **Purpose**: Isolate demographic signals while keeping resume content identical
+
+The files can be found in Test 3 and Test 3 Data directories.
+
 
 ---
 

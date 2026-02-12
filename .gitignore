@@ -1,9 +1,8 @@
 # Data files
-*.csv
 *.jsonl
 *.xlsx
 
-# Model files (PyTorch, TensorFlow, etc.)
+# Model files
 *.pt
 *.pth
 *.pkl
@@ -13,10 +12,11 @@
 *.ckpt
 *.safetensors
 
-# Specific data files
+# data files
 master_resumes_original.jsonl
-cleaned_resumes.csv
 research_data.xlsx
+generated_summaries.json
+original_summaries.json
 
 Smaller Models/distilbert_resume_level/
 Smaller Models/roberta_resume_level/
